@@ -1,16 +1,15 @@
-<h1 align="center">Game concept ideas</h1>
+<h1 align="center">Wangun</h1>
+<p align="center">We all come in many different <i><strong>shapes</strong></i> and sizes</p>
 
 ---
 
 <h2>General info</h2>
 <h4><span style="color:#ff4d4d">Languages</span> / <span style="color:#c44dff">libraries</span> in use</h4>
 
-- <a href="https://www.typescriptlang.org/" style="color:#ff4d4d">ES6 (TypeScript)</a>
-- <a href="https://threejs.org/" style="color:#c44dff">Three.js</a>
-
-<h5>Potentional titles:</h5>
-<p>Wangun, </p>
-
+- <a href="https://www.typescriptlang.org/" target="_blank" style="color:#ff4d4d">ES6 (TypeScript)</a>
+- <a href="https://threejs.org/" target="_blank" style="color:#c44dff">Three.js</a>
+- <a href="https://schteppe.github.io/cannon.js/" target="_blank" style="color:#c44dff">Cannon.js</a>
+- <a href="http://tweenjs.github.io/tween.js/" target="_blank" style="color:#c44dff">Tween.js</a>
 <h4>The game will be...</h4>
 
 - In the form of a platformer
