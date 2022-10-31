@@ -13,7 +13,7 @@ export default class Entity extends Object3D {
   initEnt() {
     this.castShadow = true;
     this.receiveShadow = true;
-    this.position.y = this.scale.y + 1;
+    this.position.y = this.scale.y - 0.2;
     this.position.z = Math.ceil(Math.random() * 4) * (Math.round(Math.random()) ? 1 : -1);
     this.position.x = Math.ceil(Math.random() * 8) * (Math.round(Math.random()) ? 1 : -1);
     this.castShadow = true;

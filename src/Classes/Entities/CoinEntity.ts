@@ -1,11 +1,5 @@
 import Entity from './Entity';
-import { Group, } from 'three';
-
-interface EntColors {
-  blue: number;
-  green?: number;
-  yellow?: number;
-}
+import { Color, MeshStandardMaterial, CubeTextureLoader } from 'three';
 
 export default class CoinEntity extends Entity {
   private scaleUp: boolean;
@@ -15,7 +9,6 @@ export default class CoinEntity extends Entity {
   private moveTiming: number;
   private readonly initScale: number;
   private readonly initYPos: number;
-  public readonly colors: EntColors;
 
   constructor() {
     super();
@@ -26,9 +19,6 @@ export default class CoinEntity extends Entity {
     this.moveTiming = 0.005;
     this.initScale = this.scale.x;
     this.initYPos = this.position.y;
-    this.colors = {
-      blue: 0x006eff,
-    }
     this.init();
   }
 
@@ -83,13 +73,28 @@ export default class CoinEntity extends Entity {
   }
 
   loadModel(coin: CoinEntity) {
+    const path = './assets/textures/cube/coin/';
+    const reflectionCube = new CubeTextureLoader().load([
+      path + 'px' + '.jpg', path + 'nx' + '.jpg',
+      path + 'py' + '.jpg', path + 'ny' + '.jpg',
+      path + 'pz' + '.jpg', path + 'nz' + '.jpg'
+    ])
+
     this.gltfloader.load('./assets/glb/low_poly_coin.glb', (gltf) => {
-      const model: Group = gltf.scene;
-      model.children.forEach(child => {
-        child.castShadow = true;
-      })
+      const model: any = gltf.scene;
+
+      model.children[0].castShadow = true;
+      for (let i = 0; i < model.children.length; i++) {
+        model.children[i].material = new MeshStandardMaterial({
+          color: new Color().setHex(0xffc800),
+          roughness: .35,
+          metalness: .8,
+          envMap: reflectionCube,
+          envMapIntensity: 1,
+        })
+      }
       coin.add(model);
-    }, undefined, function (e) {
+    }, undefined, (e) => {
       console.error(e);
     });
   }
