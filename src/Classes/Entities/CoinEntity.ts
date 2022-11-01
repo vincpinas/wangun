@@ -1,5 +1,12 @@
 import Entity from './Entity';
 import { Color, MeshStandardMaterial, CubeTextureLoader } from 'three';
+import coinModel from '../../assets/glb/low_poly_coin.glb';
+import px from '../../assets/textures/cube/coin/px.jpg';
+import nx from '../../assets/textures/cube/coin/nx.jpg';
+import py from '../../assets/textures/cube/coin/py.jpg';
+import ny from '../../assets/textures/cube/coin/ny.jpg';
+import pz from '../../assets/textures/cube/coin/pz.jpg';
+import nz from '../../assets/textures/cube/coin/nz.jpg';
 
 export default class CoinEntity extends Entity {
   private scaleUp: boolean;
@@ -73,14 +80,7 @@ export default class CoinEntity extends Entity {
   }
 
   loadModel(coin: CoinEntity) {
-    const path = './assets/textures/cube/coin/';
-    const reflectionCube = new CubeTextureLoader().load([
-      path + 'px' + '.jpg', path + 'nx' + '.jpg',
-      path + 'py' + '.jpg', path + 'ny' + '.jpg',
-      path + 'pz' + '.jpg', path + 'nz' + '.jpg'
-    ])
-
-    this.gltfloader.load('./assets/glb/low_poly_coin.glb', (gltf) => {
+    this.gltfloader.load(coinModel, (gltf) => {
       const model: any = gltf.scene;
 
       model.children[0].castShadow = true;
@@ -89,7 +89,7 @@ export default class CoinEntity extends Entity {
           color: new Color().setHex(0xffc800),
           roughness: .35,
           metalness: .8,
-          envMap: reflectionCube,
+          envMap: new CubeTextureLoader().load([px, nx, py, ny, pz, nz]),
           envMapIntensity: 1,
         })
       }

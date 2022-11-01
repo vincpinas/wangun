@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { FogExp2 } from 'three';
 import DLightShadow from '../Classes/Environment/DLightShadow';
 import TexturedPlane from '../Classes/Environment/TexturedPlane';
+import checkerboard from '../assets/textures/checkerboard.png'
 
 export default class BasicScene extends THREE.Scene {
   public camera: THREE.PerspectiveCamera;
@@ -26,7 +27,7 @@ export default class BasicScene extends THREE.Scene {
     this.add(this.light);
 
     // Textured plane with shadow receiving and a MeshPhongMaterial on by default.
-    const plane = new TexturedPlane(50, 50, "./assets/textures/checkerboard.png")
+    const plane = new TexturedPlane(50, 50, checkerboard)
     this.add(plane);
 
     this.camera.position.z = 6.5
