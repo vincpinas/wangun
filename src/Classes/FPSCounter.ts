@@ -24,7 +24,7 @@ export default class FPSCounter {
 
   updateFPS() {
     let now = Date.now();
-    this.fps = Math.round(100 / (now - this.lastLoop));
+    this.fps = Math.round(1000 / (now - this.lastLoop));
     this.lastLoop = now;
   }
 }

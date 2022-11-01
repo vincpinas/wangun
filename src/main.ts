@@ -7,10 +7,6 @@ import { PixelShader } from 'three/examples/jsm/shaders/PixelShader';
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader';
 import Game from './Classes/Game';
 
-const _WIDTH = window.innerWidth;
-const _HEIGHT = window.innerHeight;
-
-
 // Game object, this stores all the objects the game will use apart of the post processing unit.
 const game = new Game();
 
@@ -20,28 +16,28 @@ const composer = new EffectComposer(game.renderer);
 // Pass renderer to composer.
 composer.addPass(new RenderPass(game.scene, game.camera));
 // Bloom filter.
-const bloomPass = new UnrealBloomPass(new Vector2(_WIDTH, _HEIGHT), 1.5, 0.7, 0.85);
+const bloomPass = new UnrealBloomPass(new Vector2(window.innerWidth, window.innerHeight), 1.5, 0.7, 0.85);
 composer.addPass(bloomPass);
 // Pixel filter.
 const pixelPass = new ShaderPass(PixelShader);
-pixelPass.uniforms['resolution'].value = new Vector2(_WIDTH, _HEIGHT);
+pixelPass.uniforms['resolution'].value = new Vector2(window.innerWidth, window.innerHeight);
 pixelPass.uniforms['resolution'].value.multiplyScalar(window.devicePixelRatio);
 pixelPass.uniforms['pixelSize'].value = game.config.pixelRatio;
 composer.addPass(pixelPass);
 // FXAA filter.
 const fxaaPass = new ShaderPass(FXAAShader);
-fxaaPass.material.uniforms['resolution'].value.x = 1 / (_WIDTH * game.renderer.getPixelRatio());
-fxaaPass.material.uniforms['resolution'].value.y = 1 / (_HEIGHT * game.renderer.getPixelRatio());
+fxaaPass.material.uniforms['resolution'].value.x = 1 / (window.innerWidth * game.renderer.getPixelRatio());
+fxaaPass.material.uniforms['resolution'].value.y = 1 / (window.innerHeight * game.renderer.getPixelRatio());
 composer.addPass(fxaaPass);
 
 
 // On window resizing.
 window.onresize = () => {
-  game.camera.aspect = _WIDTH / _HEIGHT;
+  game.camera.aspect = window.innerWidth / window.innerHeight;
   game.camera.updateProjectionMatrix();
 
-  game.renderer.setSize(_WIDTH, _HEIGHT);
-  pixelPass.uniforms['resolution'].value.set(_WIDTH, _HEIGHT).multiplyScalar(window.devicePixelRatio);
+  game.renderer.setSize(window.innerWidth, window.innerHeight);
+  pixelPass.uniforms['resolution'].value.set(window.innerWidth, window.innerHeight).multiplyScalar(window.devicePixelRatio);
 }
 
 
