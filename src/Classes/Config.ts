@@ -7,11 +7,11 @@ export default class Config {
   constructor(options?: any) {
     this.fov = options?.fov || 90;
 
-    this.pixelRatio = 2.3;
+    this.pixelRatio = 3;
 
     this.renderDistance = 1000
 
-    this.displayFPS = true;
+    this.displayFPS = options?.displayFPS || false;
     
   }
 }
