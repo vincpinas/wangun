@@ -88,7 +88,7 @@ export default class CoinEntity extends Entity {
         model.children[i].material = new MeshStandardMaterial({
           color: new Color().setHex(0xffc800),
           roughness: .35,
-          metalness: .8,
+          metalness: .65,
           envMap: new CubeTextureLoader().load([px, nx, py, ny, pz, nz]),
           envMapIntensity: 1,
         })
