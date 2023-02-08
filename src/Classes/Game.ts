@@ -14,7 +14,7 @@ export default class Game {
   private running: boolean;
 
   constructor() {
-    this.config = new Config();
+    this.config = new Config({ displayFPS: true });
     this.renderer = new WebGLRenderer({
       canvas: document.getElementById('app') as HTMLCanvasElement,
       antialias: true,
@@ -27,20 +27,18 @@ export default class Game {
   }
 
   initGame() {
+    // Setting initial values for renderer
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.shadowMap.enabled = true;
 
-    document.addEventListener('freeze', () => {
-      this.running = false;
-    });
-    document.addEventListener('run', () => {
-      this.running = true;
-    });
+    // Events to freeze or resume the game loop.
+    addEventListener('freeze', () => this.running = false);
+    addEventListener('resume', () => this.running = true);
   }
 
   update() {
-    if(this.running) {
+    if (this.running) {
       this.scene.update();
     }
   }

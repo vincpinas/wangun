@@ -6,22 +6,15 @@ import BasicScene from './BasicScene';
 import CubeEntity from '../Classes/Entities/CubeEntity';
 
 export default class SplashScene extends BasicScene {
-  private player: Player;
   private entities: Entity[];
 
-  constructor(camera: THREE.PerspectiveCamera) {
-    super(camera);
-    this.player = new Player();
+  constructor(camera: THREE.PerspectiveCamera, player: Player) {
+    super(camera, player, 'splash');
     this.entities = [];
     this.init();
   }
 
   init() {
-    this.player.add(this.camera)
-    this.player.castShadow = true;
-
-    this.add(this.player)
-
     this.entities = [
       new CoinEntity(),
       new CoinEntity(),
