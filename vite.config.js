@@ -8,17 +8,17 @@ export default defineConfig({
     hmr: true,
     open: true,
     port: 3000,
-    https: {
-      key: fs.readFileSync('https/wangun.dev.key'),
-      cert: fs.readFileSync('https/wangun.dev.crt')
-    },
-    host: 'wangun.dev'
+    // https: {
+    //   key: fs.readFileSync('https/wangun.dev.key'),
+    //   cert: fs.readFileSync('https/wangun.dev.crt')
+    // },
+    // host: 'wangun.dev'
   },
   plugins: [
     liveReload(['src/Scenes/*.ts', 'src/Classes/*.ts', 'src/*.ts',]),
   ],
   base: './',
-  assetsInclude: '**/*glb',
+  assetsInclude: ['**/*glb', '**/*.fbx'],
   build: {
     rollupOptions: {
       output: {
