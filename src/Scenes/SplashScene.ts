@@ -45,7 +45,7 @@ export default class SplashScene extends BaseScene {
 		const follow = setInterval(() => {
 			this.camera.lookAt(this.player.position)
 		})
-
+		
 		setTimeout(() => {				
 			this.player.action(7, 1, 0)
 		}, 100)

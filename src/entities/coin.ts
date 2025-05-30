@@ -1,5 +1,5 @@
 import Entity from './entity';
-import { CubeTextureLoader, Vector3 } from 'three';
+import { CubeTextureLoader } from 'three';
 
 import coinModel from '../assets/models/shicoin.glb';
 import px from '../assets/textures/cube/coin/px.jpg';
