@@ -1,5 +1,5 @@
 import Entity from './entity';
-import { CubeTextureLoader } from 'three';
+import { CubeTextureLoader, Vector3 } from 'three';
 
 import coinModel from '../assets/models/shicoin.glb';
 import px from '../assets/textures/cube/coin/px.jpg';
@@ -20,8 +20,10 @@ export default class CoinEntity extends Entity {
   private moveUp: boolean;
   private moveTiming: number;
 
-  constructor() {
+  constructor(x: number = 0, y: number = 1, z: number = 0) {
     super();
+
+    this.position.set(x, y, z);
 
     this.scaleUp = true;
     this.moveUp = true;

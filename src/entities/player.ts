@@ -44,7 +44,7 @@ export default class Player extends Object3D {
 	private clock: Clock = new Clock();
 	private currentTween: Tween<any> | null = null;
 	private clips: AnimationAction[] = [];
-	private lastClip: AnimationAction | null = null;
+	private lastClip: number | null = null;
 	public interpolationTime: number = 0.2;
 	private animationInProgress: boolean = false;
 
@@ -354,7 +354,7 @@ export default class Player extends Object3D {
 		this.animationInProgress = false;
 	}
 
-	action(animationId: any, timeScale: any, cycleFlag: any) {
+	action(animationId: number, timeScale: any, cycleFlag: any) {
 		if (!this.mixer) return;
 
 		if (this.animationInProgress) return;
@@ -364,11 +364,11 @@ export default class Player extends Object3D {
 			this.animationInProgress = true;
 		}
 
-		// this.mixer.timeScale = timeScale;
+		this.mixer.timeScale = timeScale;
 
 		if (this.lastClip === null) {
 			this.clips[animationId].reset();
-		} else if (this.lastClip == animationId) return;
+		} else if (this.lastClip === animationId) return;
 
 		this.clips[animationId].reset();
 		this.clips[animationId].play();

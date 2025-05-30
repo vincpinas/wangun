@@ -47,7 +47,7 @@ export default class SplashScene extends BaseScene {
 		})
 
 		setTimeout(() => {				
-			this.player.action(7, 1000, 0)
+			this.player.action(7, 1, 0)
 		}, 100)
 
 		const title = document.getElementById("title")
@@ -120,12 +120,11 @@ export default class SplashScene extends BaseScene {
 
 			this.player.hasGravity = false;
 
-			this.player.action(4, 0, false);
-			this.player.interpolationTime = 0.4;
-
+			this.player.action(4, 0.8, false);
+			
 			setTimeout(() => {
-				this.player.action(1, 0, false)
-			}, 1350)
+				this.player.action(1, 0.75, true)
+			}, 2000)
 		}
 
 		this.envs.forEach((env) => env.update(time));
